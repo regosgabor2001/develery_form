@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "encore production --progress"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "sweetalert2": "^11.7.12"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^4.3.0",
+    "webpack-notifier": "^1.15.0"
+  }
+}
