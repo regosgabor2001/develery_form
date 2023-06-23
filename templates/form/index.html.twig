@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kérdések{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Tegye fel kérdését:</h1>
+{{ form_start(form, {'action': path('form')})}}
+    {{ form(form) }}
+{{ form_end(form) }}
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <script>
+            Swal.fire({
+                title: '{{ label }}',
+                text: '{{ message }}',
+                icon: 'success',
+            });
+        </script>
+    {% endfor %}
+{% endfor %}
+
+<script>
+    var form = document.querySelector('form');
+    var requiredFields = form.querySelectorAll('[required]');
+
+    requiredFields.forEach(function(field) {
+        field.addEventListener('invalid', function() {
+            field.setCustomValidity('Hiba! Kérjük töltsd ki az összes mezőt!');
+        });
+
+        field.addEventListener('input', function() {
+            field.setCustomValidity('');
+        });
+    });
+</script>
+{% endblock %}
